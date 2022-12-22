@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="salesrule" resource="default">
+    <column xsi:type="text" name="free_gift_type" nullable="false" comment="Type"/>
+    <column xsi:type="text" name="free_gift_sku" nullable="false" comment="Free Products"/>
+    <column xsi:type="text" name="fglabel_upload" nullable="true" comment="FreeGift Label Upload"/>
+    <column xsi:type="text" name="select_no_of_freegift" nullable="false" comment="Select No of FreeGift"/>
+    <column xsi:type="text" name="default_selected_freegift" nullable="false" comment="Default Selected FreeGift"/>
+  </table>
+  <table name="quote_item" resource="default">
+    <column xsi:type="text" name="parent_product_id" nullable="false" comment="Parent Product Id"/>
+    <column xsi:type="text" name="is_free_item" nullable="false" comment="Is Free Item"/>
+  </table>
+</schema>

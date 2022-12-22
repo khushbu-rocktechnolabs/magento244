@@ -1,0 +1,317 @@
+<?php
+/**
+ * @category Mageants FreeGift
+ * @package Mageants_FreeGift
+ * @copyright Copyright (c) 2017 Mageants
+ * @author Mageants Team <support@mageants.com>
+ */
+$allitems = $block->getAllItems();
+$isFreeGiftAdded = 0;
+foreach ($allitems as $items) {
+    $options=$block->getCustomOptions($items);
+    if ($options) {
+        foreach ($options as $option) {
+            if ($option['label'] == "Free! " && $option['value'] == "Product") {
+                $isFreeGiftAdded = 1;
+            }
+        }
+    }
+}
+
+
+?>
+<?php if ($isFreeGiftAdded == 0): ?>
+<script>
+    var FREEGIFT_NUM = [];
+    var FREEGIFT_ExtraRule = null;
+    function sum(input){
+
+        if (toString.call(input) !== "[object Array]")
+            return false;
+
+        var total =  0;
+        for(var i=0;i<input.length;i++)
+        {
+            //  console.log(input[i]);
+            if(isNaN(input[i])){
+                continue;
+            }
+            total += Number(input[i]);
+        }
+        return total;
+    }
+</script>
+
+    <?php /** @var \Mageants\FreeGift\Block\Freegift $block */?>
+    <?php //$uri = $_SERVER['REQUEST_URI']; ?>
+    <?php $getRequest = $block->getRequest(); ?>
+    <?php $uri = $getRequest->getRequestUri(); ?>
+    <?php $pos = strpos($uri, 'configure'); ?>
+    <?php if ($block->getIsActive() && count($block->getIsValidRuleForFreeGifts()) > 0): ?>
+
+    <div id="freegift-products-header">
+        <?php if ($block->isShowFreeGiftBanner()): ?>
+            <div class="freegift-block">
+                <?php if ($block->getFreeGiftBanner() != '') { ?>
+                    <img src="<?= /* @noEscape */ __($block->getFreeGiftBanner()) ?>" alt=""
+                    width="<?= /* @noEscape */ __($block->getBannerWidth()) ?>"
+                    height="<?= /* @noEscape */ __($block->getBannerHeight()) ?>"/>
+                <?php } else { ?>
+                    <img src="<?= /* @noEscape */ __($block->getViewFileUrl('Mageants_FreeGift/images/free-gift-banner.png')) ?>"
+                    alt="" width="<?= /* @noEscape */ __($block->getBannerWidth()) ?>"
+                    height="<?= /* @noEscape */ __($block->getBannerHeight()) ?>"/>
+                <?php } ?>
+            </div>
+        <?php endif; ?>
+        <?php if ($block->isShowFreeGiftText()): ?>
+        <div class="freegift-msg"></div>
+        <?php endif; ?>
+        
+    </div>
+    <div id="freegift-products">
+        
+            <?php foreach ($block->getValidRules() as $_rule):?>
+                <?php if ($_rule->getSimpleAction() == 'add_free_item' && (int)$_rule->getCouponType() !== 2): ?>
+                <div class="products">
+                    <?php foreach ($block->getProducts($_rule) as $product):?>  
+                        <?php $class = "freegift-info"; ?>
+                        <?php $selectedClass = '';?>
+                        <?php if (in_array($product->getSku(), $block->getFreeQuoteItemIds()) && $pos !== false): ?>
+                            <?php $selectedClass = 'selected' ?>
+                        <?php endif; ?>
+                        <div class="fgp-content">
+                        <div class="freegift-with-purchase <?= /* @noEscape */ __($class.' '.$selectedClass) ?>"
+                            data-product="<?= /* @noEscape */ __($product->getSku()) ?>"
+                            data-product-type="<?= /* @noEscape */ __($product->getTypeId()); ?>"
+                            style="<?php if ($block->getIsShowFreeProduct() == 0) {echo " display: none";}?>">
+
+                                <?php $productImageUrl = $block->getImageHelper()->init($product, 'mini_cart_product_thumbnail')
+                                    ->keepFrame(false)
+                                    ->constrainOnly(true)
+                                    ->resize($block->getWidth())
+                                    ->getUrl(); ?>
+
+                                <?php if ($product->getImage() == 'no_selection'): ?>
+                                    <?php $productImageUrl = $block->getViewFileUrl('Mageants_FreeGift/images/product/placeholder/thumbnail.jpg'); ?>
+                                <?php endif; ?>
+                                <div class="frgview-link">
+                                    <a class="mageants-freegift mageants_freegift_button"
+                                    href="<?= /* @noEscape */ __($product->getProductUrl()) ?>" target="_blank">
+                                        <img src="<?= /* @noEscape */ __($block->getViewFileUrl('Mageants_FreeGift/images/icon-login.png')); ?>"
+                                        title="<?= /* @noEscape */ __('View Product') ?>">
+                                    </a>
+                                </div>
+                                <div class="freeproduct-information">
+                                    <img  class="product photo product-item-photo"
+                                    src="<?= /* @noEscape */ __($productImageUrl) ?>"
+                                    title="<?= /* @noEscape */ __($product->getName()) ?>"
+                                    alt="<?= /* @noEscape */ __($product->getName()) ?>"
+                                    width="70px" height="70px"/>
+                                    <span class="title"><?= /* @noEscape */ __($product->getName()) ?></span>
+                                    <?php if ($block->getIsShowPrice()): ?>
+                                        <div class="freegift-price">
+                                            <?= /* @noEscape */ __($block->getFormatCurrency($product->getPrice())) ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <?php if (($_rule->getFreeGiftType() == 1) || (in_array($product->getSku(), $block->getFreeQuoteItemIds()) && $pos !== false) || ($_rule->getDefaultSelectedFreegift() == $product->getSku())) { ?>
+                                <?php $cssStyle = 'style="display:block"'; ?>
+                            <?php } else { ?>
+                                <?php $cssStyle = 'style="display:none"'; ?>
+                            <?php } ?>
+                            <?php if ($product->getTypeId() == 'configurable'): ?>
+                                <div class="config-product-option config-product-option-<?= /* @noEscape */ __($product->getSku()) ?>">
+                                    <div class="product-options-wrapper-<?= /* @noEscape */ __($product->getSku()) ?>"
+                                        id="product-options-wrapper" <?= /* @noEscape */ __($cssStyle) ?>>
+                                        <fieldset class="fieldset" tabindex="0" style="<?php
+                                        if ($block->getIsShowFreeProduct() == 0) {
+                                            echo " display: none";
+                                        }?>">
+                                            <?php if ($optionsBlock = $block->getChildBlock($product->getTypeId() . '_prototype')): ?>
+                                                <?= $optionsBlock->setProduct($product)->toHtml(); ?>
+                                            <?php endif ?>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                <?php endforeach; ?>
+                </div>
+            
+                
+                <script>
+                    require([
+                        "jquery",
+                        "Magento_Ui/js/modal/alert",
+                        "Magento_Ui/js/modal/confirm",
+                        'Magento_Ui/js/modal/modal',
+                        'jquery',
+                        'mage/mage'
+                    ], function($, alert, confirm){
+                        <?php
+
+                        if ((int)$_rule->getFreeGiftType() === 2) {
+
+                            ?>
+                        FREEGIFT_NUM.push("<?= /* @noEscape */ __($_rule->getSelectNoOfFreegift()) ?>");
+                        <?php } else {?>
+                        FREEGIFT_NUM.push(1);
+                        FREEGIFT_ExtraRule = 1;
+                        <?php }?>
+                        var DEFAULT_SKU = "<?= /* @noEscape */ __($_rule->getDefaultSelectedFreegift()) ?>";
+                        var freeGiftType = "<?= /* @noEscape */ __($_rule->getFreeGiftType()) ?>";
+                        
+                        if(freeGiftType == 2) {
+                        $('#product-addtocart-button').click( function() {
+                            if($(this).data('forge-submit')) return true;
+                            var selectedFreegift = $('#selected-gift').val()?$($('#selected-gift').val().split(',')).size():0;
+
+                            if(freeGiftType == 2) {
+                                if(selectedFreegift < sum(FREEGIFT_NUM) && !FREEGIFT_ExtraRule){
+                                    confirm({
+                                        modalClass: 'confirm vnecoms-warning freegif-warning-modal',
+                                        title: "<?= /* @noEscape */ __('Warning..') ?>",
+                                        content: "<?= /* @noEscape */ __('You can select %1 free gifts. (%2 free gift(s) is selected)') ?>".replace("%1",'<strong>'+sum(FREEGIFT_NUM)+'</strong>').replace("%2",'<strong>'+selectedFreegift+'</strong>'),
+                                        buttons: [{
+                                            text: "<?= /* @noEscape */ __('Select more free gifts') ?>",
+                                            class: 'action-secondary action-dismiss',
+
+                                            click: function (event) {
+                                                this.closeModal(event);
+                                            }
+                                        }],
+                                        actions: {
+                                            confirm: function () {
+                                                $('#selected-gift').removeClass('required-entry');
+                                                $("#product_addtocart_form").data('forge-submit', 1).submit();
+                                                $("#product_addtocart_form").data('forge-submit', 0)
+                                                $('#selected-gift').addClass('required-entry');
+                                            },
+                                            cancel: function () {}
+                                        }
+                                    });
+
+                                    event.preventDefault();
+                                }
+                            }else {
+                                return false;
+                            }
+                        });
+                    }
+
+                        if(freeGiftType == 1) {
+                            <?php if ($block->isShowFreeGiftText()): ?>
+                                $('.freegift-msg').html("<?= /* @noEscape */ __($block->getAllSkusText()) ?>");
+                            <?php endif; ?>
+                            $("#freegift-products .freegift-info").each(function(index, elm){
+                                $(this).addClass('selected');
+                                var selected = [];
+                                $("#freegift-products .freegift-info.selected").each(function(index, elm){
+                                    selected.push($(elm).data('product'));
+                                });
+                                $('#selected-gift').val(selected.join(','));
+                                return true;                                
+                            });
+                        }
+                        
+                        if(freeGiftType == 2) {
+                            <?php if ($block->isShowFreeGiftText()): ?>
+                            $('.freegift-msg').html("<?= /* @noEscape */ __(sprintf(__($block->getSelectedSkusText()), $_rule->getSelectNoOfFreegift()))?>");
+                            <?php endif; ?>
+                            $("#freegift-products .freegift-info").each(function(index, elm){
+                                str = window.location.pathname;
+                                pos = str.indexOf('configure');
+                                if($(this).attr('data-product') == DEFAULT_SKU && pos <= 0)
+                                {
+                                    $(this).addClass('selected');
+                                    var selected = [];
+                                    $("#freegift-products .freegift-info.selected").each(function(index, elm){
+                                        selected.push($(elm).data('product'));
+                                    });
+                                    $('#selected-gift').val(selected.join(','));
+                                    //return true;
+                                }
+                                $(elm).click(function(e){
+                                    var target = $(e.target);
+
+                                    $(this).toggleClass('selected');
+
+                                    if(freeGiftType == 2)
+                                    {
+                                        if(!updateSelectedGift())
+                                            $(this).removeClass('selected');
+                                    }
+
+                                    if($(this).data('product-type') == 'configurable' && $(this).hasClass('selected'))
+                                    {
+                                        $('.product-options-wrapper-'+$(this).data('product')).show();
+                                    }
+                                    else
+                                    {
+                                        $('.product-options-wrapper-'+$(this).data('product')).hide();
+                                    }
+                                });
+                            });
+
+                            function updateSelectedGift(){
+                                var selected = [];
+                                $("#freegift-products .freegift-info.selected").each(function(index, elm){
+                                    selected.push($(elm).data('product'));
+                                });
+
+                                if(sum(FREEGIFT_NUM) < $(selected).size() && !FREEGIFT_ExtraRule){
+                                    alert({
+                                        modalClass: 'error freegif-warning-modal',
+                                        title: "<?= /* @noEscape */ __('Sorry!') ?>",
+                                        content: "<?= /* @noEscape */ __('You cannot select more than %1 free gifts') ?>".replace("%1",sum(FREEGIFT_NUM)),
+                                    });
+                                    return false;
+                                }
+                                $('#selected-gift').val(selected.join(','));
+                                return true;
+                            }
+                        }
+                        var selected = [];
+                        $("#freegift-products .freegift-info.selected").each(function(index, elm){
+                            selected.push($(elm).data('product'));
+                        });
+                        $('#selected-gift').val(selected.join(','));
+                       
+                    });
+                        
+                </script>
+                    <?php
+                    // $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                    //get current product
+                    // $productType = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+                    
+                    $getRegistry = $block->getRegistry();
+                    $productType = $getRegistry->registry('current_product');
+                    if ($productType->getTypeId() == 'downloadable') {
+                        ?>
+                <style type="text/css">
+                    #freegift-products-header, #freegift-products {
+                        float: right;
+                        width: 40%;
+                        clear: both;
+                    }
+                </style>
+                        <?php
+                    }
+                    ?>
+                <?php endif; ?>
+                
+        <?php endforeach; ?>
+               
+        
+        <input type="text" style="visibility: hidden;" id="selected-gift-qty" name="selected_free_gifts_qty" value="">
+        <input type="text" style="visibility: hidden;" class="required-entry" id="selected-gift"
+        name="selected_free_gifts" value="">
+        
+        
+    </div>
+ 
+    <?php endif; ?>
+<?php endif; ?>
+

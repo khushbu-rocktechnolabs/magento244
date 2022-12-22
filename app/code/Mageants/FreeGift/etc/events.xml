@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_add_product_complete">
+        <observer name="mageants_freegift_addtocart" instance="Mageants\FreeGift\Observer\addToCartObserver" />
+    </event>
+    <event name="sales_quote_remove_item">
+        <observer name="mageants_freegift_quote_remove_item" instance="Mageants\FreeGift\Observer\QuoteRemoveItemObserver" />
+    </event>
+    <event name="checkout_cart_update_items_before">
+        <observer name="mageants_freegift_update_items_before" instance="Mageants\FreeGift\Observer\UpdateQuoteItemObserver" />
+    </event>
+	<event name="checkout_cart_update_item_complete">
+        <observer name="mageants_freegift_update_item_complete" instance="Mageants\FreeGift\Observer\UpdateItemCompleteObserver" />
+    </event>
+    <event name="controller_action_postdispatch_checkout_cart_index">
+        <observer name="mageants_freegift_checkout_cart_index" instance="Mageants\FreeGift\Observer\CartPageLoadObserver" />
+    </event>
+    <event name ="checkout_cart_update_items_after">
+        <observer name="mageants_freegift_update_qty" instance="Mageants\FreeGift\Observer\Qtyupdate" />
+    </event>
+    <event name = "controller_action_postdispatch_checkout_cart_couponpost">
+        <observer name="mageants_freegift_add_coupon" instance="Mageants\FreeGift\Observer\Addcoupon" />
+    </event>
+    <event name = "controller_action_predispatch_checkout_cart_couponpost">
+        <observer name="mageants_freegift_remove_coupon" instance="Mageants\FreeGift\Observer\Removecoupon" />
+    </event>
+</config>

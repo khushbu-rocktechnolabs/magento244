@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    
+    <route url="/V1/freeGift/getFreeGiftBannerDetails/:productId/:storeId" method="GET">
+        <service class="Mageants\FreeGift\Api\FreeGiftRepositoryInterface" method="getFreeGiftBannerDetails"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>    
+
+    <route url="/V1/freeGift/getFreeGiftBannerProducts/:productId/:storeId" method="GET">
+        <service class="Mageants\FreeGift\Api\FreeGiftRepositoryInterface" method="getFreeGiftBannerProducts"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>    
+
+    <route url="/V1/freeGift/setFreeGiftBannerProducts/:cartId/:freeGiftSkus/:freeGiftSuperAttributes/:storeId/:productId" method="POST">
+        <service class="Mageants\FreeGift\Api\FreeGiftRepositoryInterface" method="addFreeGiftBannerProducts"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>    
+
+    <route url="/V1/freeGift/updateFreeGiftBannerProducts/:cartId/:freeGiftSkus/:freeGiftSuperAttributes/:storeId/:itemId" method="POST">
+        <service class="Mageants\FreeGift\Api\FreeGiftRepositoryInterface" method="updateFreeGiftBannerProducts"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>    
+
+    <route url="/V1/freeGift/addCouponCode/:cartId/coupons/:couponCode/:storeId" method="POST">
+        <service class="Mageants\FreeGift\Api\FreeGiftRepositoryInterface" method="addCouponCode"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>    
+
+    <route url="/V1/freeGift/removeCouponCode/:cartId/coupons/:couponCode/:storeId" method="POST">
+        <service class="Mageants\FreeGift\Api\FreeGiftRepositoryInterface" method="removeCouponCode"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>    
+</routes>

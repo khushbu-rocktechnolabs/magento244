@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="mageants" translate="label" sortOrder="0">
+			<label>Mageants</label>
+		</tab>
+		<section id="mageants_freegift" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>Free Product</label>
+            <tab>mageants</tab>
+            <resource>Mageants_FreeGift::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable FreeGift</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_freegift_text" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show FreeGift Text</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_freegift_view_page" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Free Product in View Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="all_skus_text" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>All FreeGifts Text</label>
+                </field>
+          		<field id="selected_skus_text" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Selected FreeGifts Text</label>
+                    <comment>The %s will be replaced with No.of free gifts which gives to customers</comment>
+                </field>
+                <field id="show_freegift_banner" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show FreeGift Banner</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+				<field id="freegift_banner" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="6" showInDefault="1" showInWebsite="1" >
+					<label>Upload FreeGift Banner</label>
+					<backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+					<upload_dir config="system" scope_info="1">freegift</upload_dir>
+                    <comment>Upload FreeGift Banner for product view page.
+                             please upload PNG JPG JPEG GIF</comment>
+
+				</field>
+				<field id="banner_image_width" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Banner Image Width (px)</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="banner_image_height" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Banner Image Height (px)</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="is_display_freegift_price" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Is Display Free Gift Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>FreeGift Price show in product view page</comment>
+                </field>
+			</group>
+         </section>
+	</system>
+</config>

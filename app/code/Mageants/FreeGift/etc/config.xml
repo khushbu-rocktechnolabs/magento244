@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mageants_freegift>
+            <general>
+                <active>1</active>
+                <show_freegift_text>1</show_freegift_text>
+                <all_skus_text>Buy this product and get all free gifts from the list below</all_skus_text>
+                <selected_skus_text>Buy this product and get %s free gifts from the list below.</selected_skus_text>                
+                <show_freegift_banner>1</show_freegift_banner>
+                <banner_image_width>300</banner_image_width>
+                <banner_image_height>100</banner_image_height>
+                <is_display_freegift_price>1</is_display_freegift_price>
+            </general>
+        </mageants_freegift>
+    </default>
+</config>

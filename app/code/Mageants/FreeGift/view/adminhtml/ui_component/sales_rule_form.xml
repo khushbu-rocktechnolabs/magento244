@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="actions">
+		<field name="simple_action">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Apply</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="dataScope" xsi:type="string">simple_action</item>
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">true</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">add_free_item</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_type</item>
+                                        <item name="callback" xsi:type="string">show</item>
+									</item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_sku</item>
+                                        <item name="callback" xsi:type="string">show</item>
+									</item>
+									<item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.select_no_of_freegift</item>
+                                        <item name="callback" xsi:type="string">show</item>
+									</item>
+									<item name="3" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.default_selected_freegift</item>
+                                        <item name="callback" xsi:type="string">show</item>
+									</item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">add_same_item</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_type</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_sku</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+									<item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.select_no_of_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+									<item name="3" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.default_selected_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+                                </item>
+                            </item>
+                            <item name="2" xsi:type="array">
+                                <item name="value" xsi:type="string">by_fixed</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_type</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_sku</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+									<item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.select_no_of_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+									<item name="3" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.default_selected_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+                                </item>
+                            </item>
+                            <item name="3" xsi:type="array">
+                                <item name="value" xsi:type="string">by_percent</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_type</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_sku</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+									<item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.select_no_of_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+									<item name="3" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.default_selected_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+                                </item>
+                            </item>
+                            <item name="4" xsi:type="array">
+                                <item name="value" xsi:type="string">cart_fixed</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_type</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_sku</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+	                                <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.select_no_of_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+		                            <item name="3" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.default_selected_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+                                </item>
+                            </item>
+                            <item name="5" xsi:type="array">
+                                <item name="value" xsi:type="string">buy_x_get_y</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_type</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.free_gift_sku</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+                                    <item name="2" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.select_no_of_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+                                    <item name="3" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.default_selected_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+									</item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>  
+        <field name="free_gift_type">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Type</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="dataScope" xsi:type="string">free_gift_type</item>
+                    <item name="sortOrder" xsi:type="string">1</item>
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">true</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="number">1</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.select_no_of_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.default_selected_freegift</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="number">2</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.select_no_of_freegift</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">sales_rule_form.sales_rule_form.actions.default_selected_freegift</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="select_no_of_freegift">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Number of Free Product customer can select</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="dataScope" xsi:type="string">select_no_of_freegift</item>
+					<item name="sortOrder" xsi:type="string">2</item>
+                </item>
+            </argument>
+        </field>
+        <field name="free_gift_sku">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Free Item Skus</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="dataScope" xsi:type="string">free_gift_sku</item>
+                    <item name="notice" xsi:type="string" translate="true">
+                        Comma (,) separated list of the SKUs.
+                    </item>
+                    <item name="sortOrder" xsi:type="string">3</item>
+                </item>
+            </argument>
+        </field>
+        <field name="default_selected_freegift">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Default Selected FreeGift</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="dataScope" xsi:type="string">default_selected_freegift</item>
+					<item name="notice" xsi:type="string" translate="true">
+                        Add only one sku from above field. 
+                    </item>
+					<item name="sortOrder" xsi:type="string">4</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="freegift_product_label">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Product Label</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">50</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+		 <field name="fglabel_upload_image">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="source" xsi:type="string">sales_rule</item>
+                    <item name="label" xsi:type="string" translate="true">Image</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="required" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="mageants_freegift/index/upload"/>
+                    </item>
+                </item>
+            </argument>
+        </field>		
+	</fieldset>
+</form>

@@ -1,0 +1,17 @@
+<?php
+/**
+ * @category Mageants FreeGift
+ * @package Mageants_FreeGift
+ * @copyright Copyright (c) 2017 Mageants
+ * @author Mageants Team <support@mageants.com>
+ */
+?>
+
+<?php /** @var \Mageants\FreeGift\Block\Freegift $block */?>
+<?php foreach ($block->getValidRules() as $_rule):?>
+    <?php if ($_rule->getSimpleAction() == 'add_free_item' && $_rule->getFglabelUpload() != ''): ?>
+        <?php if ($block->getLabelImage($_rule)): ?>
+            <img class="mgfree-label" alt="" src="<?= /*@noEscape*/ __($block->getLabelImage($_rule)); ?>" width="150"/>
+        <?php endif;?>
+    <?php endif;?>
+<?php endforeach; ?>

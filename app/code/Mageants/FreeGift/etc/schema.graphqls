@@ -1,0 +1,116 @@
+type Query {
+    getfreegiftbannerdetails(
+        productId: Int @doc(description: "Product ID")
+        storeId: Int @doc(description: "Store ID")
+    ): FreeGiftBannerDetails 
+    @resolver(class:"Mageants\\FreeGift\\Model\\Resolver\\GetFreeGiftBannerDetails") 
+    @doc(description:"Query returns information about a freegift banner") 
+
+    getfreegiftbannerproducts(
+        productId: Int @doc(description: "Product ID")
+        storeId: Int @doc(description: "Store ID")
+    ): FreeGiftBannerProducts 
+    @resolver(class:"Mageants\\FreeGift\\Model\\Resolver\\GetFreeGiftBannerProducts") 
+    @doc(description:"Query returns information about a freegift products")     
+}
+
+type Mutation {
+    addfreegiftbannerproducts(
+        cartId: String @doc(description: "Cart ID")
+        freeGiftSkus: String @doc(description: "Get Product title")
+        freeGiftSuperAttributes: String @doc(description: "Get Product title")
+        productId: Int @doc(description: "Product ID")
+        storeId: Int @doc(description: "Store ID")
+    ): ReturnAddFreeGiftBannerProducts 
+    @resolver(class:"Mageants\\FreeGift\\Model\\Resolver\\AddFreeGiftBannerProducts") 
+    @doc(description:"Add FreeGift products") 
+
+    updatefreegiftbannerproducts(
+        cartId: String @doc(description: "Cart ID")
+        freeGiftSkus: String @doc(description: "Get Product title")
+        freeGiftSuperAttributes: String @doc(description: "Get Product title")
+        itemId: Int @doc(description: "Quote Item ID")
+        storeId: Int @doc(description: "Store ID")
+    ): ReturnUpdateFreeGiftBannerProducts 
+    @resolver(class:"Mageants\\FreeGift\\Model\\Resolver\\UpdateFreeGiftBannerProducts") 
+    @doc(description:"Update FreeGift products") 
+
+    addcouponcode(
+        cartId: String @doc(description: "Cart ID")
+        couponCode: String @doc(description: "Coupon Code")        
+        storeId: Int @doc(description: "Store ID")
+    ): ReturnAddCouponCode 
+    @resolver(class:"Mageants\\FreeGift\\Model\\Resolver\\AddCouponCode") 
+    @doc(description:"Add free gift product after couponcode apply") 
+
+    removecouponcode(
+        cartId: String @doc(description: "Cart ID")
+        couponCode: String @doc(description: "Coupon Code")        
+        storeId: Int @doc(description: "Store ID")
+    ): ReturnRemoveCouponCode 
+    @resolver(class:"Mageants\\FreeGift\\Model\\Resolver\\RemoveCouponCode") 
+    @doc(description:"Remove free gift product after couponcode delete") 
+}
+
+type FreeGiftBannerDetails @doc(description: "Defines the banner url, height, width, freeGift text and other freegift message") {
+    success: String @doc(description: "Get Success")
+    bannerUrl: String @doc(description: "Get Banner Url")
+    freeGiftText: String @doc(description: "Get Free Gift Text") 
+    bannerHeight: String @doc(description: "Get Banner Height")
+    bannerWidth: String @doc(description: "Get Banner Width") 
+    freegiftMsg: String @doc(description: "Get Free Gift Message")
+}
+
+type FreeGiftBannerProducts @doc(description: "Defines the products title, url, price, attributes and other details") {
+    view_imageurl: String @doc(description: "Get image url")   
+    product: [ProductRecord] @doc(description: "Product records with info")       
+}
+
+type ProductRecord {
+    id: Int @doc(description: "Product ID")
+    title: String @doc(description: "Get Product title")
+    url: String @doc(description: "Get Product url")
+    imageurl: String @doc(description: "Get Product image url")
+    price: String @doc(description: "Get Product price")
+    attribute: [ProductAttribute] @doc(description: "Product attribute info")       
+}
+
+type ProductAttribute {
+    id: Int @doc(description: "Get attribute ID")
+    label: String @doc(description: "Get attribute label")
+    use_default: String @doc(description: "Get attribute use_default")
+    position: Int @doc(description: "Get attribute ID")
+    values: [ProductAttributeValues] @doc(description: "Product attribute values")       
+    attribute_id: Int @doc(description: "Get attribute ID")
+    attribute_code: String @doc(description: "Get attribute code")
+    frontend_label: String @doc(description: "Get attribute frontend label")
+    store_label: String @doc(description: "Get attribute store label")    
+}
+
+type ProductAttributeValues {
+    product_super_attribute_id: Int @doc(description: "Get product super attribute id")
+    value_index: Int @doc(description: "Get Product attribute values index")
+    label: String @doc(description: "Get Product attribute value label")
+    #attribute_id: Int @doc(description: "Product ID")
+    default_label: String @doc(description: "Get Product attribute value default label")
+    store_label: String @doc(description: "Get Product attribute value store label")
+    use_default_value: String @doc(description: "Get Product attribute value use_default_value")    
+}
+
+type ReturnAddFreeGiftBannerProducts @doc(description: "Defines the success and error message") {
+    success: String @doc(description: "Get Success")      
+    error_message: String @doc(description: "Get Error Message")
+}
+
+type ReturnUpdateFreeGiftBannerProducts @doc(description: "Defines the success and error message") {
+    success: String @doc(description: "Get Success")       
+    error_message: String @doc(description: "Get Error Message")
+}
+
+type ReturnAddCouponCode @doc(description: "Defines the success message") {
+    success: String @doc(description: "Get Success")
+}
+
+type ReturnRemoveCouponCode @doc(description: "Defines the success message") {
+    success: String @doc(description: "Get Success")
+}

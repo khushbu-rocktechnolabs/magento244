@@ -1,0 +1,64 @@
+@color: #d5d5d5;
+.fgp-content {
+    float: left;
+    margin-right: 15px;
+    margin-top: 10px;
+    width: 20%;
+}
+.freegift-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.freegift-price {
+    text-decoration: line-through;
+}
+.freegif-warning-modal {
+    z-index: 9999999 !important;
+}
+.frgview-link {
+    opacity: 0;
+}
+.freegift-with-purchase {
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 5px;
+}
+.freegift-with-purchase:hover {
+    border: 1px solid @color;
+    border-radius: 5px;
+}
+.freegift-with-purchase:hover .frgview-link {
+    opacity: 1;
+}
+.freegift-with-purchase.selected {
+    background: url("../Mageants_FreeGift/images/check-mark-verify.png");
+    background-position: right 5px top 6px;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    background-size: 12px;
+    border: 1px solid @color;
+    border-radius: 5px;
+}
+.freegift-with-purchase.selected .frgview-link {
+    opacity: 1;
+}
+.config-product-option {
+    display: inline-block;
+    margin-top: 10px;
+    width: 100px;
+}
+.catalog-product-view .product.media {
+    position: relative;
+}
+.mgfree-label {
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    z-index: 9;
+}
+.modals-overlay {
+    background-color: rgba(51, 51, 51, 0);
+}

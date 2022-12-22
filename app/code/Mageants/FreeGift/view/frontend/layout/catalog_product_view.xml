@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.form.content">
+            <block after="-" class="Mageants\FreeGift\Block\Freegift" name="freegift.template" template="freegift.phtml" cacheable="false">
+                <action method="setPosition">
+                    <argument name="position" xsi:type="string">after_product</argument>
+                </action>
+				<block class="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable" name="mageantsfreegift.configurable.prototype" as="configurable_prototype" template="Mageants_FreeGift::product/view/type/options/configurable.phtml"/>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="product.info.form.options">
+            <block after="-" class="Mageants\FreeGift\Block\Freegift" name="freegift.template2" template="freegift.phtml" cacheable="false" >
+                <action method="setPosition">
+                    <argument name="position" xsi:type="string">after_product</argument>
+                </action>
+				<block class="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable" name="mageantsfreegift.configurable.prototype2" as="configurable_prototype" template="Mageants_FreeGift::product/view/type/options/configurable.phtml"/>
+             </block>
+        </referenceBlock>
+        <referenceContainer name="product.info.media">
+            <block ifconfig="mageants_freegift/general/active" before="-" class="Mageants\FreeGift\Block\Freegift" name="mageants.freegift.label" template="medialabel.phtml" >
+            </block>
+        </referenceContainer>
+    </body>
+</page>
